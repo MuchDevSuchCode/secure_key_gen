@@ -37,7 +37,7 @@ Same passphrases + same KDF settings ⇒ **exactly the same key** every time.
 
 ```bash
 # Default: PBKDF2, full 256-char hex key printed to stdout
-python3 Key Weaver.py
+python3 keyweaver.py
 ```
 
 You will be prompted:
@@ -57,20 +57,20 @@ Then the derived key is shown:
 
 ## Installation
 
-1. Save the script as `Key Weaver.py` (or whatever name you prefer).
+1. Save the script as `keyweaver.py` (or whatever name you prefer).
 2. Ensure you have Python 3 installed (3.8+ recommended).
 3. Make it executable (optional, Unix-like systems):
 
    ```bash
-   chmod +x Key Weaver.py
+   chmod +x keyweaver.py
    ```
 
 4. Run it:
 
    ```bash
-   ./Key Weaver.py        # Unix-like
+   ./keyweaver.py        # Unix-like
    # or
-   python3 Key Weaver.py  # any OS
+   python3 keyweaver.py  # any OS
    ```
 
 No external Python dependencies are required; everything uses the standard library.
@@ -105,7 +105,7 @@ Intermediate buffers are overwritten (best-effort in Python) once they’re no l
 ### Basic Usage (Default)
 
 ```bash
-python3 Key Weaver.py
+python3 keyweaver.py
 ```
 
 - KDF: PBKDF2-HMAC-SHA512
@@ -119,9 +119,9 @@ python3 Key Weaver.py
 Produce a 64-character hex string (32 bytes), which matches VeraCrypt’s maximum password length:
 
 ```bash
-python3 Key Weaver.py --output-mode veracrypt
+python3 keyweaver.py --output-mode veracrypt
 # or the shorthand:
-python3 Key Weaver.py --veracrypt
+python3 keyweaver.py --veracrypt
 ```
 
 Use the printed 64-character string as your VeraCrypt volume password.
@@ -133,7 +133,7 @@ Use the printed 64-character string as your VeraCrypt volume password.
 Generate a **binary keyfile**:
 
 ```bash
-python3 Key Weaver.py --output-mode keyfile --keyfile my_vc.key
+python3 keyweaver.py --output-mode keyfile --keyfile my_vc.key
 ```
 
 - Writes 128 raw key bytes to `my_vc.key`.
@@ -153,7 +153,7 @@ Copy the derived key to the clipboard without printing it to stdout:
 
 ```bash
 # Example: get a 64-char VeraCrypt password into clipboard
-python3 Key Weaver.py --veracrypt --copy
+python3 keyweaver.py --veracrypt --copy
 ```
 
 Behavior:
@@ -206,7 +206,7 @@ Defaults:
 On constrained systems, large parameters may yield a `memory limit exceeded` or similar error. In that case, try:
 
 ```bash
-python3 Key Weaver.py --kdf scrypt \
+python3 keyweaver.py --kdf scrypt \
   --scrypt-n 4096 --scrypt-r 4 --scrypt-p 1
 ```
 
